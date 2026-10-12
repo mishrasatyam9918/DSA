@@ -26,4 +26,3 @@ int main()
         cout<<"anagram";
     else
         cout<<"not an anagram";
-}
