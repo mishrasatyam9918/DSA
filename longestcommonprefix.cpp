@@ -1,28 +1,36 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-string commonprefix(vector<string>&strs)
+string longcommonprefix(vector<string>&strs)
 {
-if(strs.empty())
-{return "";
+    if(strs.empty())
+    return "";
+string prefix;
 
-
-}
-
-
-for(int i=0;i<strs[0].size();i++)
-{char c=strs[0][i];
-for(int j=1;j<strs.size();j++){
-    if(i>=strs[j].size()||strs[j][i]!=c)
+    string first = strs[0];
+    for(int len = first.length();len>=1;len--)
     {
-        return strs[0].substr(0,i);
-    }
-}}
-return strs[0];
-}
+        prefix = first.substr(0,len);
 
+    }
+
+    bool found = true;
+    for(int i = 1;i<strs.size();i++)
+    {
+        if(strs[i].find(prefix)!=0)
+        {
+            found = false;
+            break;
+        }
+    }
+
+    if(found)
+    return prefix;
+return "";
+
+}
 int main()
 {
     vector<string>strs={"flower","flow","flight"};
-    cout<<commonprefix(strs);
+    cout<<longcommonprefix(strs)<<endl;
 }
